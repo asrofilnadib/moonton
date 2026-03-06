@@ -1,0 +1,13 @@
+"scripts": {
+        // mengcompile file react menjadi tahapan development, masih bisa di debug coy
+        "dev": "npm run development",
+        "development": "vite",
+        // autoreload ketika file react kita ada perubahan
+        "watch": "vite build --watch",
+        "watch-poll": "vite build --watch",
+        // sama kayak watch
+        "hot": "vite",
+        // ini compile levelnya udah di production, jadi gada debug mode lagi
+        "prod": "npm run production",
+        "production": "vite build"
+    },
