@@ -14,6 +14,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::redirect('/', 'login');
+
 Route::get('/admin', function () {
     return 'Hi Admin';
 })->middleware(['auth', 'role:admin'])->name('admin');
