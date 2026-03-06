@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .input-primary {
+        @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
+    }
+
+    .input-primary::placeholder {
+        @apply text-[#767676];
+    }
+
+    .input-error {
+        @apply ring ring-red-500;
+    }
+
+    .input-primary-outline {
+        @apply BMbg-[#fff] Mfocus:bg-[#fff] Eborder-alerange Hfocus:border-alerange;
+        @apply Bfile:bg-alerange Mfile:text-white file:rounded-md file:p-2;
+    }
+
+    .btn-primary {
+        @apply w-full bg-[#FB6908] hover:bg-[#e55a00] text-white font-semibold rounded-full py-3 transition-all duration-300 text-center;
+    }
+
+    .btn-outline {
+        @apply w-full bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-full py-3 transition-all duration-300 text-center;
+    }
+}
+
 .flex::before,
 .flex::after {
     display: none !important;

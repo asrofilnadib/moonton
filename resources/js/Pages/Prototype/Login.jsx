@@ -1,9 +1,11 @@
 import { Head, Link } from "@inertiajs/react";
+import TextInput from "@/Components/TextInput";
+import InputLabel from "@/Components/InputLabel";
 
 export default function Login() {
     return (
         <>
-            <Head title="Sign Up" />
+            <Head title="Login" />
             <div className="mx-auto max-w-screen min-h-screen bg-black text-white md:px-10 px-3">
                 <div className="fixed top-[-50px] hidden lg:block">
                     <img
@@ -27,40 +29,31 @@ export default function Login() {
                         <form className="w-[370px]">
                             <div className="flex flex-col gap-6">
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-300">Email Address</label>
-                                    <input
+                                    <InputLabel forInput="email" value="Email Address" className="mb-2" />
+                                    <TextInput
                                         type="email"
                                         name="email"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Email Address"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block mb-2 text-sm font-medium text-gray-300">Password</label>
-                                    <input
+                                    <InputLabel forInput="password" value="Password" className="mb-2" />
+                                    <TextInput
                                         type="password"
                                         name="password"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Password"
                                     />
                                 </div>
                             </div>
                             <div className="grid space-y-[14px] mt-[30px]">
                                 <Link href="/">
-                                    <button type="button" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                        <span className="text-base font-semibold">
-                                            Start Watching
-                                        </span>
+                                    <button type="button" className="btn-primary">
+                                        Start Watching
                                     </button>
                                 </Link>
                                 <Link href="/">
-                                    <button
-                                        type="button"
-                                        className="w-full text-white bg-transparent border border-white hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    >
-                                        <span className="text-base">
-                                            Create New Account
-                                        </span>
+                                    <button type="button" className="btn-outline">
+                                        Create New Account
                                     </button>
                                 </Link>
                             </div>
