@@ -3,15 +3,6 @@ import Flickity from "react-flickity-component";
 import Authenticated from "@/Layouts/Authenticated/Index";
 import FeatureMovies from "@/Layouts/Authenticated/FeatureMovies";
 import CardMovies from "@/Layouts/Authenticated/CardMovies";
-import PropTypes from "prop-types";
-
-PropTypes.FeatureMovies = {
-    slug: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    rating: PropTypes.number,
-};
 
 export default function Dashboard() {
     const flickityOptions = {
@@ -36,7 +27,7 @@ export default function Dashboard() {
                         {[1, 2, 3, 4].map((i) => (
                             <FeatureMovies
                                 key={i}
-                                slug={`/movies/${i}`}
+                                slug={`movie-${i}`}
                                 name={`Movie ${i}`}
                                 genre={`Genre ${i}`}
                                 rating={4.5}
@@ -55,7 +46,7 @@ export default function Dashboard() {
                         {[1, 2, 3, 4, 5, 6, 7].map((i) => (
                             <CardMovies
                                 key={i}
-                                slug={`/movies/${i}`}
+                                slug={`movie-${i}`}
                                 name={`Movie ${i}`}
                                 genre={`Genre ${i}`}
                                 thumbnail={`/images/browse-${i % 2 === 0 ? "2" : "1"}.png`}
