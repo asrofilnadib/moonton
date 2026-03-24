@@ -3,29 +3,38 @@
 @tailwind utilities;
 
 @layer components {
+    /* Input Styles */
     .input-primary {
         @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
     }
-
+    
     .input-primary::placeholder {
         @apply text-[#767676];
     }
 
     .input-error {
-        @apply ring ring-red-500;
+        @apply border-red-500 focus:ring-red-500 focus:border-red-500;
     }
 
-    .input-primary-outline {
-        @apply BMbg-[#fff] Mfocus:bg-[#fff] Eborder-alerange Hfocus:border-alerange;
-        @apply Bfile:bg-alerange Mfile:text-white file:rounded-md file:p-2;
-    }
-
+    /* Button Styles */
     .btn-primary {
-        @apply w-full bg-[#FB6908] hover:bg-[#e55a00] text-white font-semibold rounded-full py-3 transition-all duration-300 text-center;
+        @apply bg-[#FB6908] hover:bg-[#e55a00] text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
     }
 
-    .btn-outline {
-        @apply w-full bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-full py-3 transition-all duration-300 text-center;
+    .btn-warning {
+        @apply bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
+    }
+
+    .btn-danger {
+        @apply bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
+    }
+
+    .btn-light-outline {
+        @apply bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
+    }
+
+    .btn-white-outline {
+        @apply bg-transparent border border-[#F1F1F1] hover:bg-[#F1F1F1] hover:text-black text-black rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
     }
 }
 

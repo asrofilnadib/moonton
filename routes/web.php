@@ -28,10 +28,18 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('prototype')->group(function () {
+Route::prefix('prototype')->name('prototype.')->group(function () {
     Route::get('login', function () {
         return Inertia::render('Prototype/Login');
-    })->name('prototype.login');
+    })->name('login');
+    
+    Route::get('register', function () {
+        return Inertia::render('Prototype/Register');
+    })->name('register');
+
+    Route::get('dashboard', function () {
+        return Inertia::render('Prototype/Dashboard');
+    })->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {

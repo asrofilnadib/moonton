@@ -1,6 +1,7 @@
 import { Head, Link } from "@inertiajs/react";
 import TextInput from "@/Components/TextInput";
 import InputLabel from "@/Components/InputLabel";
+import Button from "@/Components/Button";
 
 export default function Login() {
     return (
@@ -46,15 +47,23 @@ export default function Login() {
                                 </div>
                             </div>
                             <div className="grid space-y-[14px] mt-[30px]">
-                                <Link href="/">
-                                    <button type="button" className="btn-primary">
-                                        Start Watching
-                                    </button>
+                                <Link href={route('prototype.dashboard')}>
+                                    <Button type="button" variant="primary" className="w-full">
+                                        <span className="text-base font-semibold">
+                                            Start Watching
+                                        </span>
+                                    </Button>
                                 </Link>
-                                <Link href="/">
-                                    <button type="button" className="btn-outline">
-                                        Create New Account
-                                    </button>
+                                <Link href={route('prototype.register')}>
+                                    <Button
+                                        type="button"
+                                        variant="light-outline"
+                                        className="w-full"
+                                    >
+                                        <span className="text-base">
+                                            Create New Account
+                                        </span>
+                                    </Button>
                                 </Link>
                             </div>
                         </form>
