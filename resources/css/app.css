@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Flickity Custom Styles */
+.flickity-viewport {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.flickity-enabled:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 /* Input Styles */
 .input-primary {
     @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
@@ -34,6 +45,36 @@
 
 .btn-white-outline {
     @apply bg-transparent border border-[#F1F1F1] hover:bg-[#F1F1F1] hover:text-black text-black rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
+}
+
+.side-link {
+    @apply flex items-center font-normal text-[#767676] text-sm w-full mb-5 gap-3 transition-all;
+}
+
+.side-link svg {
+    @apply text-[#B7B7B7];
+}
+
+.side-link.active {
+    @apply font-semibold text-black border-r-[3px] border-[#FB6908];
+}
+
+.side-link.active svg {
+    @apply text-[#FB6908];
+}
+
+.side-link:hover {
+    @apply text-black;
+}
+
+.side-link:hover svg {
+    @apply text-black;
+}
+
+input.top-search {
+    @apply rounded-full border border-[#E2E0E0] placeholder:text-[#B4B4B4] text-base text-[#B4B4B4] px-5 py-[11px]
+    w-full max-w-[570px] focus:outline-none focus:ring-2 transition-all bg-no-repeat bg-center
+    bg-[center_right_20px];
 }
 
 .flex::before,
