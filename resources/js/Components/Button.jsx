@@ -12,7 +12,7 @@ export default function Button({
         <button
             {...props}
             type={type}
-            className={`btn-${variant} ${processing ? "opacity-25" : ""} ${className}`}
+            className={`rounded-2xl py-[13px] text-center w-full btn-${variant} ${processing ? "opacity-25" : ""} ${className}`}
             disabled={processing}
         >
             {children}

@@ -2,40 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    /* Input Styles */
-    .input-primary {
-        @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
-    }
-    
-    .input-primary::placeholder {
-        @apply text-[#767676];
-    }
+/* Input Styles */
+.input-primary {
+    @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
+}
 
-    .input-error {
-        @apply border-red-500 focus:ring-red-500 focus:border-red-500;
-    }
+.input-primary::placeholder {
+    @apply text-[#767676];
+}
 
-    /* Button Styles */
-    .btn-primary {
-        @apply bg-[#FB6908] hover:bg-[#e55a00] text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
-    }
+.input-error {
+    @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+}
 
-    .btn-warning {
-        @apply bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
-    }
+/* Button Styles */
+.btn-primary {
+    @apply bg-[#FB6908] hover:bg-[#e55a00] text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
+}
 
-    .btn-danger {
-        @apply bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
-    }
+.btn-warning {
+    @apply bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
+}
 
-    .btn-light-outline {
-        @apply bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
-    }
+.btn-danger {
+    @apply bg-red-500 hover:bg-red-600 text-white font-semibold rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
+}
 
-    .btn-white-outline {
-        @apply bg-transparent border border-[#F1F1F1] hover:bg-[#F1F1F1] hover:text-black text-black rounded-full py-3 px-6 transition-all duration-300 text-center inline-block;
-    }
+.btn-light-outline {
+    @apply bg-transparent border border-white hover:bg-white hover:text-black text-white rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
+}
+
+.btn-white-outline {
+    @apply bg-transparent border border-[#F1F1F1] hover:bg-[#F1F1F1] hover:text-black text-black rounded-full py-3 px-6 transition-all duration-300 text-center flex items-center justify-center !important;
 }
 
 .flex::before,
