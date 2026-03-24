@@ -14,6 +14,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::redirect('/', 'prototype/login');
+
 Route::get('/admin', function () {
     return 'Hi Admin';
 })->middleware(['auth', 'role:admin'])->name('admin');
@@ -26,10 +28,34 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::prefix('prototype')->name('prototype.')->group(function () {
+    Route::get('login', function () {
+        return Inertia::render('Prototype/Login');
+    })->name('login');
+    
+    Route::get('register', function () {
+        return Inertia::render('Prototype/Register');
+    })->name('register');
+
+    Route::get('dashboard', function () {
+        return Inertia::render('Prototype/Dashboard');
+    })->name('dashboard');
+
+    Route::get('subscription', function () {
+        return Inertia::render('Prototype/SubscriptionPlan');
+    })->name('subscription.plan');
+
+    Route::get('movie/{slug}', function ($slug) {
+        return Inertia::render('Prototype/MovieShow', [
+            'slug' => $slug,
+        ]);
+    })->name('movie.show');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
