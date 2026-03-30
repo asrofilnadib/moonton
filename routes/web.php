@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,6 +17,10 @@ Route::get('/', function () {
 
 Route::redirect('/', '/login');
 
+Route::middleware(['auth', 'role:user'])->prefix('dashboard')->name('user.dashboard.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+});
+
 Route::get('/admin', function () {
     return 'Hi Admin';
 })->middleware(['auth', 'role:admin'])->name('admin');
@@ -23,10 +28,6 @@ Route::get('/admin', function () {
 Route::get('/user', function () {
     return 'Hi User';
 })->middleware(['auth', 'role:user'])->name('user');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('User/Dashboard/Index');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('prototype')->name('prototype.')->group(function () {
     Route::get('login', function () {
