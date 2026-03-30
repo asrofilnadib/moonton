@@ -14,7 +14,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::redirect('/', 'prototype/login');
+Route::redirect('/', '/login');
 
 Route::get('/admin', function () {
     return 'Hi Admin';
