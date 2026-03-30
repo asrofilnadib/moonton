@@ -25,7 +25,7 @@ Route::get('/user', function () {
 })->middleware(['auth', 'role:user'])->name('user');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('User/Dashboard/Index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('prototype')->name('prototype.')->group(function () {

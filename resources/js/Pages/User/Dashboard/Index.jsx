@@ -1,10 +1,10 @@
-import { Head } from "@inertiajs/react";
+import Authenticated from "@/Layouts/Authenticated/Index";
 import Flickity from "react-flickity-component";
-import Authenticated from "@/Pages/User/Dashboard/Index";
+import { Head } from "@inertiajs/react";
 import FeatureMovies from "@/Layouts/Authenticated/FeatureMovies";
 import CardMovies from "@/Layouts/Authenticated/CardMovies";
 
-export default function Dashboard({ auth }) {
+export default function Index({ auth }) {
     const flickityOptions = {
         cellAlign: "left",
         contain: true,
