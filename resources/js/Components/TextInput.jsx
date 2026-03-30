@@ -1,23 +1,16 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import PropTypes from 'prop-types';
-
-forwardRef.PropTypes = {
-    type: PropTypes.oneOf(['text', 'email', 'password', 'number', 'date', 'datetime-local', 'month', 'search', 'tel', 'time', 'url', 'week']),
-    name: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    className: PropTypes.string,
-    variant: PropTypes.oneOf(['primary', 'error', 'primary-outline']),
-    autocomplete: PropTypes.string,
-    required: PropTypes.bool,
-    isFocused: PropTypes.bool,
-    handleChange: PropTypes.func,
-    placeholder: PropTypes.string,
-    isError: PropTypes.bool,
-}
 
 export default forwardRef(function TextInput(
-    { type = 'text', className = '', isFocused = false, defaultValue, isError, handleChange, ...props },
+    {
+        type = 'text',
+        className = '',
+        isFocused = false,
+        defaultValue,
+        value,
+        isError,
+        onChange,
+        ...props
+    },
     ref,
 ) {
     const localRef = useRef(null);
@@ -27,22 +20,23 @@ export default forwardRef(function TextInput(
     }));
 
     useEffect(() => {
-        if (isFocused) {78206258
+        if (isFocused) {
             localRef.current?.focus();
         }
     }, [isFocused]);
+
+    const controlled = value !== undefined;
 
     return (
         <input
             {...props}
             type={type}
-            defaultValue={defaultValue}
             className={
-                `input-primary ${isError ? 'input-error' : ''} ` +
-                className
+                `input-primary ${isError ? 'input-error' : ''} ` + className
             }
             ref={localRef}
-            onChange={handleChange}
+            onChange={onChange}
+            {...(controlled ? { value } : { defaultValue })}
         />
     );
 });
