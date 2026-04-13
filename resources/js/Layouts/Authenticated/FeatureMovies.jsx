@@ -19,7 +19,7 @@ export default function FeatureMovies({
                 <div className="p-[30px] flex items-center gap-1">
                     <img src="/icons/ic_star.svg" alt="star" />
                     <span className="text-sm font-medium text-white mt-1">
-                        {rating.toFixed(1)}/5.0
+                        {rating.toFixed(1)}/10.0
                     </span>
                 </div>
             </div>
@@ -40,7 +40,7 @@ export default function FeatureMovies({
                     <img src="/icons/ic_play.svg" width="50" alt="play" />
                 </div>
             </div>
-            <Link href={route('prototype.movie.show', slug)} className="inset-0 absolute z-50"></Link>
+            <Link href={route('user.dashboard.movie.show', slug)} className="inset-0 absolute z-50"></Link>
         </div>
     );
 }

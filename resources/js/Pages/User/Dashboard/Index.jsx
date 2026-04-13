@@ -4,7 +4,7 @@ import { Head } from "@inertiajs/react";
 import FeatureMovies from "@/Layouts/Authenticated/FeatureMovies";
 import CardMovies from "@/Layouts/Authenticated/CardMovies";
 
-export default function Index({ auth }) {
+export default function Index({ auth, featureMovies, browseMovies }) {
     const flickityOptions = {
         cellAlign: "left",
         contain: true,
@@ -24,14 +24,14 @@ export default function Index({ auth }) {
                 </div>
                 <div className="gap-[30px] __scroll-selector">
                     <Flickity options={flickityOptions}>
-                        {[1, 2, 3, 4].map((i) => (
+                        {featureMovies.map((featuredMovie) => (
                             <FeatureMovies
-                                key={i}
-                                slug={`movie-${i}`}
-                                name={`Movie ${i}`}
-                                genre={`Genre ${i}`}
-                                rating={4.5}
-                                thumbnail={`/images/featured-${i % 2 === 0 ? "2" : "1"}.png`}
+                                key={featuredMovie.id}
+                                slug={featuredMovie.slug}
+                                name={featuredMovie.name}
+                                genre={featuredMovie.category}
+                                rating={featuredMovie.rating}
+                                thumbnail={featuredMovie.thumbnail_url}
                             />
                         ))}
                     </Flickity>
@@ -43,13 +43,13 @@ export default function Index({ auth }) {
                 </div>
                 <div className="gap-[30px]">
                     <Flickity options={flickityOptions}>
-                        {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                        {browseMovies.map((browseMovie) => (
                             <CardMovies
-                                key={i}
-                                slug={`movie-${i}`}
-                                name={`Movie ${i}`}
-                                genre={`Genre ${i}`}
-                                thumbnail={`/images/browse-${i % 2 === 0 ? "2" : "1"}.png`}
+                                key={browseMovie.id}
+                                slug={browseMovie.slug}
+                                name={browseMovie.name}
+                                genre={browseMovie.category}
+                                thumbnail={browseMovie.thumbnail_url}
                             />
                         ))}
                     </Flickity>
