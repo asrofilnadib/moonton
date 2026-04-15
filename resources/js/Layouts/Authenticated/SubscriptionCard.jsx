@@ -16,6 +16,7 @@ export default function SubscriptionCard({
     feature,
     durationInMonths,
     isPremium = false,
+    onUserSubscribe,
 }) {
     return (
         <>
@@ -49,6 +50,7 @@ export default function SubscriptionCard({
                             type="button"
                             variant="primary"
                             className="w-full"
+                            onClick={onUserSubscribe}
                         >
                             <span className="text-base">Start Basic</span>
                         </Button>
@@ -109,6 +111,7 @@ export default function SubscriptionCard({
                             type="button"
                             variant="primary"
                             className="w-full"
+                            onClick={onUserSubscribe}
                         >
                             <span className="text-base font-semibold">
                                 Subscribe Now

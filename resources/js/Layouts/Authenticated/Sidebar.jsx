@@ -83,7 +83,7 @@ export default function Sidebar() {
                     {/* Others */}
                     <div>
                         <div className="text-gray-1 text-sm mb-4">Others</div>
-                        <Link href={route('prototype.subscription.plan')} className="side-link">
+                        <Link href={route('user.dashboard.subscriptionPlan.index')} className="side-link">
                             <svg
                                 width="24"
                                 height="24"
