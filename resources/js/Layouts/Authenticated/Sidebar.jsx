@@ -1,17 +1,21 @@
+import SubscriptionDetail from "./SubscriptionDetail";
 import { Link } from "@inertiajs/react";
 
-export default function Sidebar() {
+export default function Sidebar({ auth, activePlan }) {
     return (
         <aside className="fixed z-50 w-[300px] h-full">
             <div className="flex flex-col p-[30px] pr-0 border-r border-[#F1F1F1] overflow-y-auto h-full bg-white">
-                <Link href={route('prototype.dashboard')}>
+                <Link href={route("prototype.dashboard")}>
                     <img src="/images/moonton.svg" alt="Moonton Logo" />
                 </Link>
                 <div className="links flex flex-col mt-[60px] h-full gap-[50px]">
                     {/* Menu */}
                     <div>
                         <div className="text-gray-1 text-sm mb-4">Menu</div>
-                        <Link href={route('prototype.dashboard')} className={`side-link ${route().current('prototype.dashboard') ? 'active' : ''}`}>
+                        <Link
+                            href={route("user.dashboard.index")}
+                            className={`side-link ${route().current("user.dashboard.index") ? "active" : ""}`}
+                        >
                             <svg
                                 width="24"
                                 height="24"
@@ -83,7 +87,12 @@ export default function Sidebar() {
                     {/* Others */}
                     <div>
                         <div className="text-gray-1 text-sm mb-4">Others</div>
-                        <Link href={route('user.dashboard.subscriptionPlan.index')} className="side-link">
+                        <Link
+                            href={route(
+                                "user.dashboard.subscriptionPlan.index",
+                            )}
+                            className="side-link"
+                        >
                             <svg
                                 width="24"
                                 height="24"
@@ -132,7 +141,10 @@ export default function Sidebar() {
                             </svg>
                             Your Profile
                         </Link>
-                        <Link href={route('prototype.login')} className="side-link mb-0">
+                        <Link
+                            href={route("prototype.login")}
+                            className="side-link mb-0"
+                        >
                             <svg
                                 width="24"
                                 height="24"
@@ -150,24 +162,15 @@ export default function Sidebar() {
                         </Link>
                     </div>
 
-                    {/* Subscription details */}
-                    <div className="mt-auto pr-[30px]">
-                        <div className="p-5 bg-black rounded-[25px]">
-                            <img
-                                src="/icons/ic_star-rounded.svg"
-                                alt="Subscription Icon"
-                            />
-                            <div className="text-white text-lg font-semibold mt-4 mb-8">
-                                For Greatest
-                            </div>
-                            <div className="text-white text-sm mb-2">
-                                12 of 30 hari
-                            </div>
-                            <div className="rounded-full w-full h-[6px] bg-[#333333]">
-                                <div className="rounded-full h-full w-9/12 bg-[#FB6908]"></div>
-                            </div>
-                        </div>
-                    </div>
+                    {auth.activePlan && (
+                        <SubscriptionDetail
+                            isPremium={auth.activePlan.name === "Premium"}
+                            name={auth.activePlan?.name}
+                            activeDays={auth.activePlan?.active_days}
+                            remainingActiveDays={auth.activePlan?.remaining_days}
+                            elapsedDays={auth.activePlan?.elapsed_days}
+                        />
+                    )}
                 </div>
             </div>
         </aside>
