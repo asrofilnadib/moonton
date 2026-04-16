@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\MoviesSeeder;
+use Database\Seeders\SubscriptionPlansSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +25,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RoleTableSeeder::class,
-            UserTableSeeder::class,
+            // UserTableSeeder::class,
+            MoviesSeeder::class,
+            SubscriptionPlansSeeder::class,
         ]);
     }
 }
