@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(UserSubscription::class, 'user_id', 'id');
     }
 
-    public function getIsActiveSubscription()
+    public function getIsActiveAttribute()
     {
         if (! $this->lastActiveSubscription) {
             return false;
