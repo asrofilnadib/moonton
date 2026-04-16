@@ -1,7 +1,7 @@
-import { Head, Link } from '@inertiajs/react';
-import ReactPlayer from 'react-player';
+import { Head, Link } from "@inertiajs/react";
+import ReactPlayer from "react-player";
 
-export default function MovieShow({ slug }) {
+export default function MovieShow({ movie }) {
     return (
         <>
             <Head title="Movie Show" />
@@ -9,9 +9,9 @@ export default function MovieShow({ slug }) {
                 className="mx-auto w-screen h-screen relative watching-page font-poppins bg-black"
                 id="stream"
             >
-                <div className="pt-[100px] min-h-[calc(100vh-100px)] w-full">
+                <div className="pt-[100px] h-full w-full">
                     <ReactPlayer
-                        src="https://www.youtube.com/watch?v=XjIRAafWt-A"
+                        src={movie.video_url}
                         controls
                         width="100%"
                         height="100%"
@@ -22,7 +22,7 @@ export default function MovieShow({ slug }) {
                 </div>
 
                 <div className="absolute top-5 left-5 z-20">
-                    <Link href={route('prototype.dashboard')}>
+                    <Link href={route("user.dashboard.index")}>
                         <img
                             src="/icons/ic_arrow-left.svg"
                             className="transition-all btn-back w-[46px]"
@@ -33,7 +33,7 @@ export default function MovieShow({ slug }) {
 
                 <div className="absolute title-video top-7 left-1/2 -translate-x-1/2 max-w-[310px] md:max-w-[620px] text-center">
                     <span className="font-medium text-2xl transition-all text-white drop-shadow-md select-none">
-                        Details Screen Part Final
+                        {movie.name}
                     </span>
                 </div>
             </section>
