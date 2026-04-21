@@ -89,6 +89,7 @@ export default function Login({ status, canResetPassword }) {
                                         isFocused={true}
                                         autoComplete="username"
                                         placeholder="Email Address"
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError
@@ -114,6 +115,7 @@ export default function Login({ status, canResetPassword }) {
                                         }
                                         autoComplete="current-password"
                                         placeholder="Password"
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError

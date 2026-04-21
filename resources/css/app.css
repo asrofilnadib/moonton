@@ -15,10 +15,14 @@
 
 /* Input Styles */
 .input-primary {
+    @apply bg-white border border-[#E2E0E0] text-black text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
+}
+
+.input-primary-dark {
     @apply bg-[#141414] border border-[#333333] text-white text-sm rounded-full focus:ring-2 focus:ring-[#FB6908] focus:border-[#FB6908] block w-full px-5 py-3 outline-none transition-all duration-300;
 }
 
-.input-primary::placeholder {
+.input-primary-dark::placeholder {
     @apply text-[#767676];
 }
 
