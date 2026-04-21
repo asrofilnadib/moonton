@@ -70,6 +70,7 @@ export default function Register() {
                                             setData("name", e.target.value)
                                         }
                                         required
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError
@@ -93,6 +94,7 @@ export default function Register() {
                                             setData("email", e.target.value)
                                         }
                                         required
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError
@@ -117,6 +119,7 @@ export default function Register() {
                                             setData("password", e.target.value)
                                         }
                                         required
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError
@@ -145,6 +148,7 @@ export default function Register() {
                                             )
                                         }
                                         required
+                                        className="input-primary-dark"
                                     />
 
                                     <InputError
