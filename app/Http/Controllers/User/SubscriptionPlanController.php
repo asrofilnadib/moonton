@@ -6,15 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\SubscriptionPlans;
 use App\Models\UserSubscription;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
-use Midtrans\Config;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class SubscriptionPlanController extends Controller
 {
-
     public function __construct()
     {
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
@@ -30,42 +28,42 @@ class SubscriptionPlanController extends Controller
 
     public function index()
     {
-        return Inertia::render("User/Subscription/Index", [
-            "subscriptionPlans" => SubscriptionPlans::all(),
+        return Inertia::render('User/Subscription/Index', [
+            'subscriptionPlans' => SubscriptionPlans::all(),
         ]);
     }
 
     public function userSubscribe(SubscriptionPlans $subscriptionPlan)
     {
         $data = [
-            "user_id" => Auth::user()->id,
-            "subscription_plan_id" => $subscriptionPlan->id,
-            "price" => $subscriptionPlan->price,
-            "payment_status" => "pending",
+            'user_id' => Auth::user()->id,
+            'subscription_plan_id' => $subscriptionPlan->id,
+            'price' => $subscriptionPlan->price,
+            'payment_status' => 'pending',
         ];
 
         $userSubscription = UserSubscription::create($data);
 
         $snapToken = $this->getSnapToken([
-            "transaction_details" => [
-                "order_id" => $userSubscription->id . "-" . Str::random(),
-                "gross_amount" => $userSubscription->price,
+            'transaction_details' => [
+                'order_id' => $userSubscription->id.'-'.Str::random(),
+                'gross_amount' => $userSubscription->price,
             ],
         ]);
 
         $userSubscription->update([
-            "snap_token" => $snapToken,
+            'snap_token' => $snapToken,
         ]);
 
-        return Inertia::render("User/Subscription/Index", [
-            "userSubscription" => $userSubscription,
-            "subscriptionPlans" => SubscriptionPlans::all(),
+        return Inertia::render('User/Subscription/Index', [
+            'userSubscription' => $userSubscription,
+            'subscriptionPlans' => SubscriptionPlans::all(),
         ]);
     }
 
     public function midtransCallback(Request $request)
     {
-        $notif = new \Midtrans\Notification();
+        $notif = new \Midtrans\Notification;
 
         $transaction_status = $notif->transaction_status;
         $fraud = $notif->fraud_status;
@@ -77,45 +75,39 @@ class SubscriptionPlanController extends Controller
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'challenge'
                 $userSubscription->payment_status = 'pending';
-            }
-            else if ($fraud == 'accept') {
+            } elseif ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'success'
                 $userSubscription->payment_status = 'paid';
-                $userSubscription->expired_date = Carbon::now()->addMonths((int) $userSubscription->subscriptionPlan->active_period_in_months);
+                $userSubscription->expired_at = Carbon::now()->addMonths((int) $userSubscription->subscriptionPlan->active_period_in_months);
             }
-        }
-        else if ($transaction_status == 'cancel') {
+        } elseif ($transaction_status == 'cancel') {
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'failure'
                 $userSubscription->payment_status = 'failed';
-            }
-            else if ($fraud == 'accept') {
+            } elseif ($fraud == 'accept') {
                 // TODO Set payment status in merchant's database to 'failure'
                 $userSubscription->payment_status = 'failed';
             }
-        }
-        else if ($transaction_status == 'deny') {
+        } elseif ($transaction_status == 'deny') {
             // TODO Set payment status in merchant's database to 'failure'
             $userSubscription->payment_status = 'failed';
-        }
-        else if ($transaction_status == 'settlement') {
+        } elseif ($transaction_status == 'settlement') {
             // TODO set payment status in merchant's database to 'Settlement'
             $userSubscription->payment_status = 'paid';
-            $userSubscription->expired_date = Carbon::now()->addMonths((int) $userSubscription->subscriptionPlan->active_period_in_months);
-        }
-        else if ($transaction_status == 'pending') {
+            $userSubscription->expired_at = Carbon::now()->addMonths((int) $userSubscription->subscriptionPlan->active_period_in_months);
+        } elseif ($transaction_status == 'pending') {
             // TODO set payment status in merchant's database to 'Pending'
             $userSubscription->payment_status = 'pending';
-        }
-        else if ($transaction_status == 'expire') {
+        } elseif ($transaction_status == 'expire') {
             // TODO set payment status in merchant's database to 'expire'
             $userSubscription->payment_status = 'failed';
         }
 
         $userSubscription->save();
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Payment success'
+            'message' => 'Payment success',
         ]);
     }
 }
