@@ -7,6 +7,8 @@ use App\Models\Movies;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\Admin\Movie\Store;
+use App\Http\Requests\Admin\Movie\Update;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class MovieController extends Controller
@@ -49,7 +51,7 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Movie $movie)
+    public function show(Movies $movie)
     {
         //
     }
@@ -57,24 +59,45 @@ class MovieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Movie $movie)
+    public function edit(Movies $movie)
     {
-        //
+        return Inertia::render('Admin/Movies/Edit', [
+            'movie' => $movie,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Update $request, Movies $movie)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->file('thumbnail_url')) {
+            $data['thumbnail_url'] = $request->file('thumbnail_url')->store('movies/thumbnails', 'public');
+            Storage::disk('public')->delete($movie->thumbnail_url);
+        } else {
+            $data['thumbnail_url'] = $movie->thumbnail_url;
+        }
+
+        $movie->update($data);
+
+        return redirect()->route('admin.dashboard.movie.index')->with([
+            'message' => 'Movie updated successfully',
+            'type' => 'success',
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Movie $movie)
+    public function destroy(Movies $movie)
     {
-        //
+        $movie->delete();
+
+        return redirect()->route('admin.dashboard.movie.index')->with([
+            'message' => 'Movie deleted successfully',
+            'type' => 'success',
+        ]);
     }
 }
