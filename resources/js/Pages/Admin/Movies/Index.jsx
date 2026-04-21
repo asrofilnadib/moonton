@@ -10,6 +10,12 @@ export default function Index({ auth, flash, movies }) {
         }
     };
 
+    const handleRestore = (id) => {
+        if (confirm("Are you sure you want to restore this movie?")) {
+            router.post(route("admin.dashboard.movie.restore", id));
+        }
+    };
+
     return (
         <Authenticated auth={auth}>
             <Head title="Movies" />
@@ -89,14 +95,23 @@ export default function Index({ auth, flash, movies }) {
                                         </Link>
                                     </td>
                                     <td className="py-4 text-center w-24">
-                                        <button
-                                            onClick={() =>
-                                                handleDelete(movie.id)
-                                            }
-                                            className="text-red-500 font-semibold hover:underline"
-                                        >
-                                            Delete
-                                        </button>
+                                        {movie.deleted_at ? (
+                                            <button className="text-green-500 font-semibold hover:underline"
+                                                onClick={() =>
+                                                    handleRestore(movie.id)
+                                                }
+                                            >
+                                                Restore
+                                            </button>
+                                        ) : (
+                                            <button className="text-red-500 font-semibold hover:underline"
+                                                onClick={() =>
+                                                    handleDelete(movie.id)
+                                                }
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
@@ -112,4 +127,3 @@ export default function Index({ auth, flash, movies }) {
         </Authenticated>
     );
 }
-
