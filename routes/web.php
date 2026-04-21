@@ -34,6 +34,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.dashboar
     Route::resource('movie', AdminMovieController::class);
 });
 
+Route::post('midtrans/notification', [SubscriptionPlanController::class, 'midtransCallback'])->name('midtrans.callback');
+
 Route::get('/admin', function () {
     return 'Hi Admin';
 })->middleware(['auth', 'role:admin'])->name('admin');
